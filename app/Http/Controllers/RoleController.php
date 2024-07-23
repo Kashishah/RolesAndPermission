@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
-use Illuminate\Auth\Events\Validated;
+// use App\Models\Role;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Illuminate\Auth\Events\Validated;
 
 class RoleController extends Controller
 {
@@ -12,7 +13,7 @@ class RoleController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
         // echo "In";
         $roles = Role::all();
         return view('roles-and-permission.roles.index',compact('roles')); 

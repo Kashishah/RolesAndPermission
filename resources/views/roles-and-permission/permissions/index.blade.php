@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    User Role View
+    User permission View
 @endsection
 
 
@@ -14,7 +14,7 @@
         @endif
         <div class="card mt-3">
             <div class="card-header">
-                <h3>Roles</h3>
+                <h3>Permissions</h3>
                 <div>
                     <div class="float-start">
                         <a href="" class="btn btn-success">User</a>
@@ -22,7 +22,7 @@
                         <a href=" {{ route('permissions.index') }} " class="btn btn-warning">Permission</a>
                     </div>
                     <div class="float-end">
-                        <a href="{{ route('roles.create') }}" class="btn btn-primary">Create Role</a>
+                        <a href="{{ route('permissions.create') }}" class="btn btn-primary">Create permission</a>
                        
                     </div>
                 </div>
@@ -37,14 +37,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if($roles)
-                            @foreach ($roles as $role)
+                        @if($permissions)
+                            @foreach ($permissions as $permission)
                                 <tr>
-                                    <td> {{$role->id}} </td>
-                                    <td>{{ $role->name }}</td>
+                                    <td> {{$permission->id}} </td>
+                                    <td>{{ $permission->name }}</td>
                                     <td>
-                                        <a href=" {{ route('roles.edit', $role->id) }} " class="btn btn-success">Edit</a>
-                                        <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display: inline;">
+                                        <a href=" {{ route('permissions.edit', $permission->id) }} " class="btn btn-success">Edit</a>
+                                        <form method="POST" action="{{ route('permissions.destroy', $permission->id) }}" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>

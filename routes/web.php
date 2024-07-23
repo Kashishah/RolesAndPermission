@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +23,7 @@ require __DIR__.'/auth.php';
 
 
 Route::resource('roles',RoleController::class);
+
+Route::resource('permissions',PermissionController::class);
+
 // Route::delete('roles/{roleId}/delete',[RoleController::class, 'destroy'])->name('roles.delete');

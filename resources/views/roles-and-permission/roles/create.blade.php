@@ -31,6 +31,20 @@
                         @enderror
                     </div>
 
+                    <div class="mb-3">
+                        <label for="">Permissions</label>
+                    @foreach ($permissions as $permission)
+                        <div>
+                            <input type="checkbox"
+                                id="{{ $permission }}"
+                                name="permissions[]"
+                                value="{{ $permission }}">
+                            <label for="{{ $permission }}">{{ $permission }}</label>
+                        </div>
+                    @endforeach
+                       
+                    </div>
+
                     <div class="submit">
                         <input type="submit" value="Create a Role" class="btn btn-success">
                     </div>

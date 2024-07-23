@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 // use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Auth\Events\Validated;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -14,9 +16,12 @@ class RoleController extends Controller
      */
     public function index()
     {   
-        // echo "In";
+        // $permissions =Permission::with('roles')->get();
         $roles = Role::all();
-        return view('roles-and-permission.roles.index',compact('roles')); 
+        return view('roles-and-permission.roles.index'
+                ,['roles' =>  $roles,
+                    // 'permissions' => $permissions
+                ]); 
     }
 
     /**
@@ -24,7 +29,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('roles-and-permission.roles.create'); 
+        $permissions = DB::table('permissions')->pluck('name','name');
+        return view('roles-and-permission.roles.create',['permissions' => $permissions]); 
     }
 
     /**
@@ -32,13 +38,23 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        
+        
         $data = $request->validate([
+            'permissions' => 'required',
             'name' => 'required|
                        unique:roles'
         ]);
 
-        $role = Role::create($data);
+
+
+        $role = Role::create(
+            [ 'name' => $request->name]);
         
+
+        $permissions = $request->permissions;
+        $role->syncPermissions($permissions);
+
         $role->save();
 
         return redirect('roles')->with('status','Role successfully inserted');

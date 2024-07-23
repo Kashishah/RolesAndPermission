@@ -33,6 +33,7 @@
                         <tr>
                             <th>SR. No.</th>
                             <th>Name</th>
+                            <th>Roles</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -42,6 +43,11 @@
                                 <tr>
                                     <td> {{$role->id}} </td>
                                     <td>{{ $role->name }}</td>
+                                    <td>
+                                        @foreach ($permissions as $permission)
+                                            <span class="badge text-bg-danger"> {{ $permission->name }} </span>
+                                        @endforeach
+                                    </td>
                                     <td>
                                         <a href=" {{ route('roles.edit', $role->id) }} " class="btn btn-success">Edit</a>
                                         <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display: inline;">
@@ -53,10 +59,12 @@
                                     </td>
                                 </tr>
                             @endforeach
-                        @endif  
+                        @else
                         <tr>
                             <td colspan="3" class="text-center"> <strong>No any records</strong> </td>
                         </tr>
+                        @endif  
+
                            
                     </tbody>
                 </table>

@@ -53,11 +53,11 @@
                                     </td>
                                 </tr>
                             @endforeach
-                        @endif  
-                        <tr>
-                            <td colspan="3" class="text-center"> <strong>No any records</strong> </td>
-                        </tr>
-                           
+                            @else
+                            <tr>
+                                <td colspan="3" class="text-center"> <strong>No any records</strong> </td>
+                            </tr>
+                            @endif  
                     </tbody>
                 </table>
             </div>

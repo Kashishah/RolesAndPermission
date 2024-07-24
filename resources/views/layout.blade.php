@@ -1,3 +1,6 @@
+
+<x-app-layout>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,3 +18,4 @@
     <!-- @yield('js') -->
 </body>
 </html>
+</x-app-layout>

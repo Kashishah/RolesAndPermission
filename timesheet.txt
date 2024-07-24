@@ -11,3 +11,6 @@ Tomorrow I will go through How it will authenticate the user according their rol
 24/07/2024
 
 Fetch the permissions according their role and show in the index files of the role 
+Creating userController and Complete the crud of user side 
+Assign a role to the user and Fetch the role according user and show in index
+Authenticate the user according the role and their permissions 

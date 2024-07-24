@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PermissionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,9 +22,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::group(['middleware' =>['auth','role:Super-Admin|Admin|Staff|HR|test']],function(){
 
-Route::resource('roles',RoleController::class);
+    Route::resource('roles',RoleController::class);
 
-Route::resource('permissions',PermissionController::class);
+    Route::resource('permissions',PermissionController::class);
 
+    Route::resource('users',UserController::class)->middleware('permission:access UserController');
+
+});
 // Route::delete('roles/{roleId}/delete',[RoleController::class, 'destroy'])->name('roles.delete');

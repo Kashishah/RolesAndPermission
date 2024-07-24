@@ -16,15 +16,19 @@
             <div class="card-header">
                 <h3>Roles</h3>
                 <div>
+                @if(auth()->user()->can('Navigation Buttons') )
                     <div class="float-start">
                         <a href="{{ route('users.index') }}" class="btn btn-success">User</a>
                         <a href=" {{ route('roles.index') }} " class="btn btn-primary">Roles</a>
                         <a href=" {{ route('permissions.index') }} " class="btn btn-warning">Permission</a>
                     </div>
+                @endif
+                @if(auth()->user()->can('Create button') )    
                     <div class="float-end">
                         <a href="{{ route('roles.create') }}" class="btn btn-primary">Create Role</a>
-                       
                     </div>
+                @endif
+            
                 </div>
             </div>
             <div class="card-body">
@@ -33,7 +37,7 @@
                         <tr>
                             <th>SR. No.</th>
                             <th>Name</th>
-                            <th>Roles</th>
+                            <th>Permissions</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -47,7 +51,7 @@
                                         <!-- this getPermissionNames fetch the permission according user role it is the function of SPATIE -->
                                     @if (!empty($role->getPermissionNames()))  
                                         @foreach ($role->getPermissionNames() as $permissionName)
-                                            <label for="" class="me-2 badge badge-pill text-bg-dark">{{$permissionName}}</label>
+                                            <label for="" class="me-1 badge badge-pill text-bg-dark">{{$permissionName}}</label>
                                         @endforeach
                                     @endif
                                     </td>

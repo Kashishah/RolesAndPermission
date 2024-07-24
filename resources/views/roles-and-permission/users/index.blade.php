@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    User permission View
+    Users
 @endsection
 
 
@@ -14,7 +14,7 @@
         @endif
         <div class="card mt-3">
             <div class="card-header">
-                <h3>Permissions</h3>
+                <h3>Users</h3>
                 <div>
                 @if(auth()->user()->can('Navigation Buttons') )
                     <div class="float-start">
@@ -25,9 +25,10 @@
                 @endif
                 @if(auth()->user()->can('Create button') )
                     <div class="float-end">
-                        <a href="{{ route('permissions.create') }}" class="btn btn-primary">Create permission</a>
+                        <a href="{{ route('users.create') }}" class="btn btn-primary">Create User</a>
                     </div>
                 @endif
+
                 </div>
             </div>
             <div class="card-body">
@@ -36,31 +37,35 @@
                         <tr>
                             <th>SR. No.</th>
                             <th>Name</th>
-                            @if(auth()->user()->can('Edit button|Delete button') )
+                            <th>Email</th>
+                            <th>Roles</th>
                             <th>Action</th>
-                            @endif
                         </tr>
                     </thead>
                     <tbody>
-                        @if($permissions)
-                            @foreach ($permissions as $permission)
+                        @if($users)
+                            @foreach ($users as $user)
                                 <tr>
-                                    <td> {{$permission->id}} </td>
-                                    <td>{{ $permission->name }}</td>
-                                    @if(auth()->user()->can('Edit button') )
-                                    <td>
-                                        <a href=" {{ route('permissions.edit', $permission->id) }} " class="btn btn-success">Edit</a>
-                                    </td>
+                                    <td> {{$user->id}} </td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td class="d-flex flex-wrap">
+                                        <!-- this getRoleNames() fetch the roles according users it is the function of SPATIE -->
+                                    @if (!empty($user->getRoleNames()))
+                                        @foreach ($user->getRoleNames() as $roleName)
+                                            <label for="" class="me-1 badge badge-pill text-bg-dark">{{$roleName}}</label>
+                                        @endforeach
+                                        
                                     @endif
-                                    @if(auth()->user()->can('Delete button') )
+                                    </td>
                                     <td>
-                                        <form method="POST" action="{{ route('permissions.destroy', $permission->id) }}" style="display: inline;">
+                                        <a href=" {{ route('users.edit', $user->id) }} " class="btn btn-success">Edit</a>
+                                        <form method="POST" action="{{ route('users.destroy', $user->id) }}" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
-                                    </td>
-                                    @endif
+
                                     </td>
                                 </tr>
                             @endforeach

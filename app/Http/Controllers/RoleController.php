@@ -104,7 +104,7 @@ class RoleController extends Controller
         
         if($role){
             $role->syncPermissions($permissions);
-            $role->update(['name',$request->name]);
+            $role->update(['name' => $request->name]);
             return redirect('roles')->with('status','Role successfully updated');
         }else{
         return redirect('roles')->with('status','Something is wrong Role cannot updated please try again');

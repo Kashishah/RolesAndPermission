@@ -17,7 +17,7 @@
                 <h3>Permissions</h3>
                 <div>
                     <div class="float-start">
-                        <a href="" class="btn btn-success">User</a>
+                        <a href="{{ route('users.index') }}" class="btn btn-success">User</a>
                         <a href=" {{ route('roles.index') }} " class="btn btn-primary">Roles</a>
                         <a href=" {{ route('permissions.index') }} " class="btn btn-warning">Permission</a>
                     </div>

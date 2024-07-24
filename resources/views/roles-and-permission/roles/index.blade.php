@@ -17,7 +17,7 @@
                 <h3>Roles</h3>
                 <div>
                     <div class="float-start">
-                        <a href="" class="btn btn-success">User</a>
+                        <a href="{{ route('users.index') }}" class="btn btn-success">User</a>
                         <a href=" {{ route('roles.index') }} " class="btn btn-primary">Roles</a>
                         <a href=" {{ route('permissions.index') }} " class="btn btn-warning">Permission</a>
                     </div>
@@ -43,11 +43,14 @@
                                 <tr>
                                     <td> {{$role->id}} </td>
                                     <td>{{ $role->name }}</td>
-                                    <!-- <td>
-                                        @foreach ($permissions as $permission)
-                                            <span class="badge text-bg-danger"> {{ $permission->name }} </span>
+                                    <td class="d-flex flex-wrap">
+                                        <!-- this getPermissionNames fetch the permission according user role it is the function of SPATIE -->
+                                    @if (!empty($role->getPermissionNames()))  
+                                        @foreach ($role->getPermissionNames() as $permissionName)
+                                            <label for="" class="me-2 badge badge-pill text-bg-dark">{{$permissionName}}</label>
                                         @endforeach
-                                    </td> -->
+                                    @endif
+                                    </td>
                                     <td>
                                         <a href=" {{ route('roles.edit', $role->id) }} " class="btn btn-success">Edit</a>
                                         <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display: inline;">

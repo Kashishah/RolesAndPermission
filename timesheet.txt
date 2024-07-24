@@ -1,0 +1,13 @@
+23/07/2024
+
+Go through the roles and permissions from spatie 
+Watch the video of how spatie works 
+Creating a  mini project for roles and permissions
+In that project role module, permission module done, data successfully add in tables 
+Tomorrow I will go through How it will authenticate the user according their role and permisssions  
+
+
+
+24/07/2024
+
+Fetch the permissions according their role and show in the index files of the role 

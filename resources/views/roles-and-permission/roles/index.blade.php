@@ -43,11 +43,11 @@
                                 <tr>
                                     <td> {{$role->id}} </td>
                                     <td>{{ $role->name }}</td>
-                                    <td>
+                                    <!-- <td>
                                         @foreach ($permissions as $permission)
                                             <span class="badge text-bg-danger"> {{ $permission->name }} </span>
                                         @endforeach
-                                    </td>
+                                    </td> -->
                                     <td>
                                         <a href=" {{ route('roles.edit', $role->id) }} " class="btn btn-success">Edit</a>
                                         <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display: inline;">

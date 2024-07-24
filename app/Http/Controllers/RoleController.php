@@ -16,8 +16,9 @@ class RoleController extends Controller
      */
     public function index()
     {   
-        // $permissions =Permission::with('roles')->get();
+        
         $roles = Role::all();
+        
         return view('roles-and-permission.roles.index'
                 ,['roles' =>  $roles,
                     // 'permissions' => $permissions
@@ -72,9 +73,19 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
+        $permissions = Permission::all();
         $role = Role::findOrFail($id);
-        
-        return view('roles-and-permission.roles.edit', ['role' => $role]);
+        $rolePermissions = DB::table('role_has_permissions')
+                            ->where('role_has_permissions.role_id',$role->id)
+                            ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+                            ->all();
+
+        return view('roles-and-permission.roles.edit', 
+                                                    ['role' => $role,
+                                                    'rolePermissions' => $rolePermissions,
+                                                    'permissions' => $permissions 
+                                                    ]
+                    );
     }
 
     /**
@@ -82,22 +93,23 @@ class RoleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->validate([
-            'name' => 'required|
-                       unique:roles'
+        $request->validate([
+            'name' => 'required',
+            'permissions' => 'required',
         ]);
-
+       
         $role = Role::findOrfail($id);
 
+        $permissions = $request->permissions;
+       
+        
         if($role){
-            $role->update($data);
+            $role->syncPermissions($permissions);
+            $role->update(['name',$request->name]);
+            return redirect('roles')->with('status','Role successfully updated');
         }else{
         return redirect('roles')->with('status','Something is wrong Role cannot updated please try again');
-
         }
-
-        
-        return redirect('roles')->with('status','Role successfully updated');
     }
 
     /**
@@ -116,4 +128,9 @@ class RoleController extends Controller
 
         return redirect('roles')->with('status','Role deleted successfully');
     }
+
+
+    // public function showPermissions(){
+    //     $role = 
+    // }
 }

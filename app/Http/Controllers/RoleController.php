@@ -52,7 +52,7 @@ class RoleController extends Controller
         
         
         $data = $request->validate([
-            'permissions' => 'required',
+            'permissions' => 'required|array',
             'name' => 'required|
                        unique:roles'
         ]);
@@ -105,7 +105,7 @@ class RoleController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'permissions' => 'required',
+            'permissions' => 'required|array',
         ]);
        
         $role = Role::findOrfail($id);
@@ -140,7 +140,10 @@ class RoleController extends Controller
     }
 
 
-    // public function showPermissions(){
-    //     $role = 
-    // }
+    public function checkRole(Request $request){
+
+        $roleName =  $request->input('roleName');
+        $roleExists = Role::where('name', $roleName)->exists();
+        return response()->json(['exists' => $roleExists]);
+    }
 }

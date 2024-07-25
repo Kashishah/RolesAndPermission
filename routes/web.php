@@ -31,4 +31,6 @@ Route::group(['middleware' =>['auth','role:super-admin|admin-head|admin|test']],
 
     Route::resource('users',UserController::class)->middleware('permission:Access User controller');
     // ->middleware('permission:access UserController');
+
+    Route::get('/check-role',[RoleController::class,'checkRole'])->middleware('permission:Access Role controller')->name('check_role');
 });

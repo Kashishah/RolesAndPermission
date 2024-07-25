@@ -22,3 +22,4 @@ Find the error and try to resolve the controller side permissions error and fix 
 Creating a seeder files and testing it properly also useful for testing purpose 
 Done the whole roles and permission cycle using SPATIE laravel 
 In role create.blade.php file give jquery validation 
+Give pagination to all index files

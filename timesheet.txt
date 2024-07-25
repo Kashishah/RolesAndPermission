@@ -14,3 +14,11 @@ Fetch the permissions according their role and show in the index files of the ro
 Creating userController and Complete the crud of user side 
 Assign a role to the user and Fetch the role according user and show in index
 Authenticate the user according the role and their permissions 
+
+
+25/07/2024
+
+Find the error and try to resolve the controller side permissions error and fix it 
+Creating a seeder files and testing it properly also useful for testing purpose 
+Done the whole roles and permission cycle using SPATIE laravel 
+In role create.blade.php file give jquery validation 

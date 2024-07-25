@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::group(['middleware' =>['auth','role:super-admin|admin-Head']],function(){
+Route::group(['middleware' =>['auth','role:super-admin|admin-head|admin']],function(){
 
     Route::resource('roles',RoleController::class)->middleware('permission:Access Role controller');
 

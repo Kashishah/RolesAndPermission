@@ -83,8 +83,8 @@
                     },
                     'password': {
                         required : true ,
-                        minlength: 8,
-                        minlength: 20
+                        // minlength: 8,
+                        // minlength: 20
                     },
                     'roles[]' : {
                         required: true,
@@ -95,13 +95,13 @@
                         required: "Please enter your name"
                     },
                     'email': {
-                        required: 'Please enter a password',
+                        required: 'Please enter a email',
                         email: 'Email format is wrong'
                     },
                     'password': {
-                        required : 'Please enter a email' ,
-                        minlength: 'Minimum length is 8',
-                        minlength: 'Maximum length is 20'
+                        required : 'Please enter a password' ,
+                        // minlength: 'Minimum length is 8',
+                        // maxlength: 'Maximum length is 20'
                     },
                     'roles[]' : {
                         required: 'Select atleast any 1 option',

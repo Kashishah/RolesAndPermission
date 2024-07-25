@@ -16,14 +16,14 @@
             <div class="card-header">
                 <h3>Permissions</h3>
                 <div>
-                @if(auth()->user()->can('Navigation Buttons') )
+                @if(auth()->user()->can('See Buttons Permission') )
                     <div class="float-start">
                         <a href="{{ route('users.index') }}" class="btn btn-success">User</a>
                         <a href=" {{ route('roles.index') }} " class="btn btn-primary">Roles</a>
                         <a href=" {{ route('permissions.index') }} " class="btn btn-warning">Permission</a>
                     </div>
                 @endif
-                @if(auth()->user()->can('Create button') )
+                @if(auth()->user()->can('See Buttons Permission') )
                     <div class="float-end">
                         <a href="{{ route('permissions.create') }}" class="btn btn-primary">Create permission</a>
                     </div>
@@ -31,12 +31,15 @@
                 </div>
             </div>
             <div class="card-body">
+                <div class="mb-2">
+                    {{ $permissions->links() }}
+                </div>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>SR. No.</th>
                             <th>Name</th>
-                            @if(auth()->user()->can('Edit button|Delete button') )
+                            @if(auth()->user()->can('See Buttons Permission') )
                             <th>Action</th>
                             @endif
                         </tr>
@@ -47,13 +50,9 @@
                                 <tr>
                                     <td> {{$permission->id}} </td>
                                     <td>{{ $permission->name }}</td>
-                                    @if(auth()->user()->can('Edit button') )
+                                    @if(auth()->user()->can('See Buttons Permission') )
                                     <td>
                                         <a href=" {{ route('permissions.edit', $permission->id) }} " class="btn btn-success">Edit</a>
-                                    </td>
-                                    @endif
-                                    @if(auth()->user()->can('Delete button') )
-                                    <td>
                                         <form method="POST" action="{{ route('permissions.destroy', $permission->id) }}" style="display: inline;">
                                             @csrf
                                             @method('DELETE')

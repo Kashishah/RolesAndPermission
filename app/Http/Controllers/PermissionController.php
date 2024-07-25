@@ -9,13 +9,23 @@ use Illuminate\Support\Facades\DB;
 
 class PermissionController extends Controller
 {
+
+    public function __construct()
+    {      
+        $this->middleware('permission:Delete Permission', ['only' => ['destroy']]);
+        $this->middleware('permission:Edit Permission', ['only' => ['edit','update']]);
+        $this->middleware('permission:Create Permission', ['only' => ['create','store']]);
+        $this->middleware('permission:View Permission', ['only' => ['view']]);
+        $this->middleware('permission:Index Permission', ['only' => ['index']]);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         // echo "In";
-        $permissions = Permission::all();
+        $permissions = Permission::paginate(5);
         return view('roles-and-permission.permissions.index',compact('permissions')); 
     }
 

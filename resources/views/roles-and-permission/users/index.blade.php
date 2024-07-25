@@ -16,14 +16,14 @@
             <div class="card-header">
                 <h3>Users</h3>
                 <div>
-                @if(auth()->user()->can('Navigation Buttons') )
+                @if(auth()->user()->can('See Buttons Permission') )
                     <div class="float-start">
                         <a href="{{ route('users.index') }}" class="btn btn-success">User</a>
                         <a href=" {{ route('roles.index') }} " class="btn btn-primary">Roles</a>
                         <a href=" {{ route('permissions.index') }} " class="btn btn-warning">Permission</a>
                     </div>
                 @endif
-                @if(auth()->user()->can('Create button') )
+                @if(auth()->user()->can('See Buttons Permission') )
                     <div class="float-end">
                         <a href="{{ route('users.create') }}" class="btn btn-primary">Create User</a>
                     </div>
@@ -32,6 +32,9 @@
                 </div>
             </div>
             <div class="card-body">
+                <div class="mb-2">
+                    {{ $users->links() }}
+                </div>
                 <table class="table table-bordered">
                     <thead>
                         <tr>

@@ -16,14 +16,12 @@
             <div class="card-header">
                 <h3>Roles</h3>
                 <div>
-                @if(auth()->user()->can('Navigation Buttons') )
+                @if(auth()->user()->can('See Buttons Permission') )
                     <div class="float-start">
                         <a href="{{ route('users.index') }}" class="btn btn-success">User</a>
                         <a href=" {{ route('roles.index') }} " class="btn btn-primary">Roles</a>
                         <a href=" {{ route('permissions.index') }} " class="btn btn-warning">Permission</a>
                     </div>
-                @endif
-                @if(auth()->user()->can('Create button') )    
                     <div class="float-end">
                         <a href="{{ route('roles.create') }}" class="btn btn-primary">Create Role</a>
                     </div>
@@ -32,6 +30,9 @@
                 </div>
             </div>
             <div class="card-body">
+                <div class="mb-2">
+                    {{ $roles->links() }}
+                </div>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -47,15 +48,15 @@
                                 <tr>
                                     <td> {{$role->id}} </td>
                                     <td>{{ $role->name }}</td>
-                                    <td class="d-flex flex-wrap">
+                                    <td class="d-flex flex-wrap ">
                                         <!-- this getPermissionNames fetch the permission according user role it is the function of SPATIE -->
                                     @if (!empty($role->getPermissionNames()))  
                                         @foreach ($role->getPermissionNames() as $permissionName)
-                                            <label for="" class="me-1 badge badge-pill text-bg-dark">{{$permissionName}}</label>
+                                            <label for="" class="me-1 mt-1 badge badge-pill text-bg-dark">{{$permissionName}}</label>
                                         @endforeach
                                     @endif
                                     </td>
-                                    <td>
+                                    <td >
                                         <a href=" {{ route('roles.edit', $role->id) }} " class="btn btn-success">Edit</a>
                                         <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display: inline;">
                                             @csrf

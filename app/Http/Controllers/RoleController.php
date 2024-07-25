@@ -11,13 +11,24 @@ use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
+
+
+    public function __construct()
+    {      
+        $this->middleware('permission:Delete Permission', ['only' => ['destroy']]);
+        $this->middleware('permission:Edit Permission', ['only' => ['edit','update']]);
+        $this->middleware('permission:Create Permission', ['only' => ['create','store']]);
+        $this->middleware('permission:View Permission', ['only' => ['view']]);
+        $this->middleware('permission:Index Permission', ['only' => ['index']]);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {   
 
-        $roles = Role::all();
+        $roles = Role::paginate(3);
         
         return view('roles-and-permission.roles.index'
                 ,['roles' =>  $roles,

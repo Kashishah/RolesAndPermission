@@ -52,11 +52,11 @@
                                     <td>{{ $permission->name }}</td>
                                     @if(auth()->user()->can('See Buttons Permission') )
                                     <td>
-                                        <a href=" {{ route('permissions.edit', $permission->id) }} " class="btn btn-success">Edit</a>
+                                        <a href=" {{ route('permissions.edit', $permission->id) }} " class=" mb-1 btn btn-success">Edit</a>
                                         <form method="POST" action="{{ route('permissions.destroy', $permission->id) }}" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="mb-1 btn btn-danger">Delete</button>
                                         </form>
                                     </td>
                                     @endif

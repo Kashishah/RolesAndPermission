@@ -57,11 +57,11 @@
                                     @endif
                                     </td>
                                     <td >
-                                        <a href=" {{ route('roles.edit', $role->id) }} " class="btn btn-success">Edit</a>
+                                        <a  href=" {{ route('roles.edit', $role->id) }} " class=" mb-1 btn btn-success">Edit</a>
                                         <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="mb-1 btn btn-danger">Delete</button>
                                         </form>
 
                                     </td>

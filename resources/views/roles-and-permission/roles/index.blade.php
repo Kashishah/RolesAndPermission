@@ -7,11 +7,17 @@
 
 @section('content')
     <div class="container">
-        @if (session('status'))
+        @if (session('status_success'))
             <div class="alert alert-success mt-5 mb-5">
                 {{ session('status') }}
             </div>
         @endif
+        @if (session('status_error'))
+            <div class="alert alert-danger mt-5 mb-5">
+                {{ session('status') }}
+            </div>
+        @endif
+
         <div class="card mt-3">
             <div class="card-header">
                 <h3>Roles</h3>

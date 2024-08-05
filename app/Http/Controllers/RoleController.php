@@ -144,7 +144,7 @@ class RoleController extends Controller
             $role->update(['name' => $request->name]);
             return redirect('roles')->with('status_success', 'Role successfully updated');
         } else {
-            return redirect('roles')->with('status', 'Something is wrong Role cannot updated please try again');
+            return redirect('roles')->with('status_error', 'Something is wrong Role cannot updated please try again');
         }
     }
 
@@ -157,13 +157,13 @@ class RoleController extends Controller
 
         $compareRole = $this->compareRole($role->name);
         if ($compareRole == true) {
-            return redirect()->route('roles.index')->with('status', 'You can\'t delete your own role and permission');
+            return redirect()->route('roles.index')->with('status_error', 'You can\'t delete your own role and permission');
         } else {
             if ($role) {
                 $role->delete();
-                return redirect('roles')->with('status', 'Role deleted successfully');
+                return redirect('roles')->with('status_success', 'Role deleted successfully');
             } else {
-                return redirect('roles')->with('status', 'Something is wrong Role cannot be delete please try again');
+                return redirect('roles')->with('status_error', 'Something is wrong Role cannot be delete please try again');
             }
         }
     }
@@ -171,7 +171,7 @@ class RoleController extends Controller
 
     public function checkRole(Request $request)
     {
-        $roleName =  $request->input('roleName');
+        $roleName =  $request->input('roleName');   
         $roleExists = Role::where('name', $roleName)->exists();
         return response()->json(['exists' => $roleExists]);
     }

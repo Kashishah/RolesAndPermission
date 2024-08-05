@@ -9,12 +9,12 @@
     <div class="container">
         @if (session('status_success'))
             <div class="alert alert-success mt-5 mb-5">
-                {{ session('status') }}
+                {{ session('status_success') }}
             </div>
         @endif
         @if (session('status_error'))
             <div class="alert alert-danger mt-5 mb-5">
-                {{ session('status') }}
+                {{ session('status_error') }}
             </div>
         @endif
 
